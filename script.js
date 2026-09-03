@@ -5,7 +5,6 @@ function showToast(msg){
   const t=$("toast"); t.textContent=msg; t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),2600);
 }
-
 function useHeroPlanner(){
   $("destination").value=$("heroDestination").value||"Kodaikanal";
   $("days").value=$("heroDays").value;
