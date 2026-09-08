@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SmartTour AI — Intelligent Travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast"></div>
+<header class="nav"><a class="logo" href="#"><span>✦</span> SmartTour <b>AI</b></a><nav><a href="#planner">Plan</a><a href="#discover">Discover</a><a href="#weather">Weather</a><a href="#mapSection">Map</a><a href="#budget">Budget</a></nav><div id="authArea"><button class="ghost" onclick="showAuth('login')">Log in</button><button class="primary" onclick="showAuth('register')">Get started</button></div></header>
+
+<section class="hero"><div class="heroCopy"><div class="pill">✦ YOUR PERSONAL AI TRAVEL COMPANION</div><h1>Travel more.<br><em>Plan smarter.</em></h1><p>Build intelligent itineraries, discover stays and food, check live weather and manage your travel budget — all in one place.</p><div class="heroBtns"><a class="primary" href="#planner">Plan my trip →</a><button class="ghost light" onclick="showAuth('register')">Create free account</button></div><div class="trust"><span>✓ AI-powered</span><span>✓ Weather-aware</span><span>✓ Budget-friendly</span></div></div><div class="heroCard"><div class="miniLabel">TRIP SNAPSHOT</div><div class="destinationPhoto"><span>🏔️</span><div><b>Ooty, Tamil Nadu</b><small>Nature · Food · Culture</small></div></div><div class="stats"><div><b>3</b><small>Days</small></div><div><b>₹10K</b><small>Budget</small></div><div><b>4.7★</b><small>Avg. rating</small></div></div></div></section>
+
+<main>
+<section id="planner" class="section"><div class="sectionHead"><div class="eyebrow">01 — INTELLIGENT PLANNING</div><h2>Your trip, designed around you.</h2><p>Give us the basics and SmartTour AI handles the rest.</p></div>
+<form id="plannerForm" class="planner"><div><label>Where are you going?</label><input id="destination" required placeholder="Ooty, Chennai, Madurai..."></div><div><label>Days</label><input id="days" type="number" min="1" max="14" value="3"></div><div><label>Total budget</label><input id="budgetInput" type="number" min="500" value="10000"></div><div><label>Interests</label><input id="interests" placeholder="Nature, food, temples"></div><button class="primary full" type="submit">✦ Generate AI itinerary</button></form><div id="planResult"></div></section>
+
+<section id="discover" class="section tinted"><div class="sectionHead row"><div><div class="eyebrow">02 — DISCOVER</div><h2>Stay. Taste. Explore.</h2></div><button class="ghost" onclick="loadDiscover(document.getElementById('destination').value)">Refresh results ↻</button></div><div class="twoCol"><div><div class="subhead">🏨 Recommended stays</div><div id="hotels" class="cards"></div></div><div><div class="subhead">🍴 Local favourites</div><div id="restaurants" class="cards"></div></div></div></section>
+
+<section id="weather" class="section"><div class="sectionHead"><div class="eyebrow">03 — LIVE WEATHER</div><h2>Know before you go.</h2><p>Powered by live forecast data.</p></div><div class="weatherBar"><input id="weatherPlace" placeholder="Enter destination" value="Ooty"><button class="primary" onclick="loadWeather()">Check weather</button></div><div id="weatherResult"></div></section>
+
+<section id="mapSection" class="section tinted"><div class="sectionHead"><div class="eyebrow">04 — EXPLORE</div><h2>See it on the map.</h2><p>Explore your destination and nearby points of interest.</p></div><div id="map"></div></section>
+
+<section id="budget" class="section"><div class="sectionHead"><div class="eyebrow">05 — BUDGET</div><h2>Keep every rupee on track.</h2></div><div class="budget"><div class="budgetInputs"><label>Hotel / night<input id="hotelCost" type="number" value="2500"></label><label>Nights<input id="nights" type="number" value="2"></label><label>Food / day<input id="foodCost" type="number" value="800"></label><label>Transport<input id="transportCost" type="number" value="1500"></label><label>Activities<input id="activityCost" type="number" value="1000"></label></div><div class="totalBox"><small>ESTIMATED TOTAL</small><strong id="total">₹8,600</strong><p>Adjust the inputs to instantly see your estimated trip cost.</p></div></div></section>
+
+<section class="section assistant"><div><div class="eyebrow">SMARTTOUR ASSISTANT</div><h2>Have a travel question?</h2><p>Ask the AI assistant for planning help.</p></div><div class="chat"><div id="chatLog"><div class="bubble ai">Hi! I’m your SmartTour assistant. Ask me about an itinerary, budget or destination.</div></div><div class="chatInput"><input id="chatMessage" placeholder="e.g. Make my Ooty trip cheaper"><button class="primary" onclick="sendChat()">Send</button></div></div></section>
+
+<section id="adminSection" class="section tinted hidden"><div class="sectionHead"><div class="eyebrow">ADMIN CONSOLE</div><h2>Tourism operations dashboard.</h2></div><div id="adminStats" class="adminStats"></div><div class="adminGrid"><div class="card"><h3>Recent users</h3><div id="adminUsers"></div></div><div class="card"><h3>Recent trips</h3><div id="adminTrips"></div></div></div></section>
+</main>
+
+<footer><div class="logo">✦ SmartTour <b>AI</b></div><p>College Hackathon Advanced Edition</p><small>Map data © OpenStreetMap contributors</small></footer>
+
+<div id="authModal" class="modal hidden"><div class="modalBox"><button class="close" onclick="hideAuth()">×</button><div class="tabs"><button id="loginTab" onclick="showAuth('login')">Login</button><button id="registerTab" onclick="showAuth('register')">Register</button></div><form id="authForm"><input id="authName" placeholder="Full name"><input id="authEmail" type="email" placeholder="Email" required><input id="authPassword" type="password" placeholder="Password (8+ characters)" required><button class="primary full" type="submit">Continue</button><p id="authMsg"></p></form></div></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="app.js"></script>
+</body></html>
