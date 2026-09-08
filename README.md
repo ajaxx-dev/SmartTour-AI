@@ -1,2 +1,0 @@
-# SmartTour-AI
-SmartTour
